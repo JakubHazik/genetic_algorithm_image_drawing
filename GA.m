@@ -1,4 +1,5 @@
 % clear;
+close all;
 
 global popSize
 global space
@@ -11,16 +12,18 @@ circlesNum = 100;
 imageSizeX = 200;
 imageSizeY = 200;
 maxCircleRadius = 50;
-maxColorVal = 100;
+maxColorVal = 50;
 % read img
 originalImg = imread('fotoCustom.jpg');
 originalImg = imresize(originalImg, [imageSizeY imageSizeX]);
+% figure;
+% imshow(originalImg);
+% title('Original image')
 
 % GA params
 iterationsNum = 1;
-generationsNum=5;        %pocet generacii/ pokusov
+generationsNum=50;        %pocet generacii/ pokusov
 popSize = 50;              %velkost populacie
-stringLength = 3;
 bestPopSelection=[1 1 1 1 1 1 1 1 1 1]; %vektor definujuci vyber najlepsich retazcov
 space = [
     zeros(1, circlesNum),               zeros(1, circlesNum),               zeros(1, circlesNum),                   zeros(1, circlesNum);
@@ -29,9 +32,13 @@ space = [
 amps=space(2,:) * 0.02;       %aditivna mutacia;
 course=zeros(1, generationsNum);    %inicializacia pola pre uchovanie priebehu, aby sa nemusela v kazdom kroku menit velkost vektora
 
+% pop = generatePop(originalImg, popSize, circlesNum, space);
+% %%
+
 for j=1:iterationsNum
     %vygenerovanie novej generacie
 %     pop=genrpop(popSize,space);
+%     pop = generatePop(originalImg, popSize, circlesNum, space);
     
     %vytvorenie vektora s fitnesom(funkcnej hodnoty)d pre kazdy retazec
     fit = computeFitness(originalImg, pop, imageSizeX, imageSizeY, circlesNum);
@@ -59,18 +66,3 @@ gen = pop(1, :);
 save('resultWorkspace');
 plotResult;
 
-% figure(1);
-% hold on;
-% plot(average, '--', 'LineWidth', 1, 'Color', 'r', 'DisplayName', 'Priemer');
-% xlabel('Pocet vyhodnoteni.');
-% ylabel('Funkcna hodnota.');
-% legend('Genetický algoritmus SGA');
-% title('Graf zobrazujuci priemer funkčných hodnôt');
-% legend
-
-%funkcna hodnota v bode
-% function z = kvad(gen)
-%   for i=1:popSize
-%       z(i)=gen(1)^2+gen(2)^2;
-%   end
-% end

@@ -1,7 +1,7 @@
 function [img] = drawGAImage(chromozon, imageSizeX, imageSizeY, circlesNum)
     % init blank image
     
-    img = uint8(zeros(imageSizeX, imageSizeY));
+    img = uint8(zeros(imageSizeY, imageSizeX));
     
     % add circles
     for i = 1: circlesNum
