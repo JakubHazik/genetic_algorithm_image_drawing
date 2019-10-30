@@ -8,10 +8,10 @@ global bestPopSelection
 global imageSizeX imageSizeY circlesNum
 
 % image params
-circlesNum = 100;
-imageSizeX = 200;
-imageSizeY = 200;
-maxCircleRadius = 50;
+circlesNum = 70;
+imageSizeX = 150;
+imageSizeY = 150;
+maxCircleRadius = 40;
 maxColorVal = 50;
 % read img
 originalImg = imread('fotoCustom.jpg');
@@ -22,9 +22,9 @@ originalImg = imresize(originalImg, [imageSizeY imageSizeX]);
 
 % GA params
 iterationsNum = 1;
-generationsNum=50;        %pocet generacii/ pokusov
-popSize = 50;              %velkost populacie
-bestPopSelection=[1 1 1 1 1 1 1 1 1 1]; %vektor definujuci vyber najlepsich retazcov
+generationsNum=500;        %pocet generacii/ pokusov
+popSize = 80;              %velkost populacie
+bestPopSelection=ones(1, 12); %vektor definujuci vyber najlepsich retazcov
 space = [
     zeros(1, circlesNum),               zeros(1, circlesNum),               zeros(1, circlesNum),                   zeros(1, circlesNum);
     ones(1, circlesNum) * imageSizeX,   ones(1, circlesNum) * imageSizeY,   ones(1, circlesNum) * maxCircleRadius   ones(1, circlesNum) * maxColorVal
@@ -39,6 +39,7 @@ for j=1:iterationsNum
     %vygenerovanie novej generacie
 %     pop=genrpop(popSize,space);
 %     pop = generatePop(originalImg, popSize, circlesNum, space);
+%     pop = change(pop, 2, space);
     
     %vytvorenie vektora s fitnesom(funkcnej hodnoty)d pre kazdy retazec
     fit = computeFitness(originalImg, pop, imageSizeX, imageSizeY, circlesNum);
@@ -46,9 +47,7 @@ for j=1:iterationsNum
     for i=1:generationsNum  %kym nenajde minimum funkcie
         [pop, fit, bestGenFit] = processGeneration(originalImg, pop, fit);
         course(i) = bestGenFit;
-        
-        fprintf('\nProgress %.1f percent\n', 100 * i * j / (generationsNum * iterationsNum))
-        fprintf('Best %i', bestGenFit);
+        fprintf('Best %i. Progress %.1f percent.\n', bestGenFit, 100 * i * j / (generationsNum * iterationsNum));
         
         if(j==1)
             average(i)=course(i); % 1. naplnenie pola

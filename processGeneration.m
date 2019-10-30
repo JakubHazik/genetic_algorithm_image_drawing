@@ -15,8 +15,9 @@ global imageSizeX imageSizeY circlesNum
 work=crossov(oldPop, 2, 0);
 
 %mutacia
-work=mutx(work,0.12,space);
-work=muta(work,0.1,amps,space);
+work = mutx(work, 0.2, space);
+work = muta(work, 0.1, amps, space);
+work = mutn(work, 0.1, amps, space);
 
 %spojenie starej a novej generacie
 newPop = [best; work];
