@@ -78,9 +78,9 @@ for j=1:iterationsNum
         
         % ukladanie priebehu
         if(0 == mod(i, saveRate))
-            save(output_dir + "/" + sprintf('%07d', generationsNum));
-            img = drawGAImage(pop(i, :), imageSizeX, imageSizeY, circlesNum);
-            imwrite(img, output_dir + "/" + sprintf('%07d', generationsNum) + ".png");
+            save(output_dir + "/" + sprintf('%07d', i));
+            img = drawGAImage(pop(1, :), imageSizeX, imageSizeY, circlesNum);
+            imwrite(img, output_dir + "/" + sprintf('%07d', i) + ".png");
             plotResult;
         end
         
@@ -89,6 +89,6 @@ for j=1:iterationsNum
 end
 
 gen = pop(1, :);
-save(output_dir + "/" + sprintf('%07d', generationsNum));
+save(output_dir + "/" + sprintf('%07d', i + 1));
 plotResult;
 

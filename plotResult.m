@@ -1,5 +1,5 @@
 % load('resultWorkspace500.mat');
-gen = pop(15,:);
+gen = pop(1,:);
 
 % compare images
 figure(20);
