@@ -33,7 +33,7 @@ space = [
     zeros(1, circlesNum),               zeros(1, circlesNum),               zeros(1, circlesNum),                   zeros(1, circlesNum);
     ones(1, circlesNum) * imageSizeX,   ones(1, circlesNum) * imageSizeY,   ones(1, circlesNum) * maxCircleRadius   ones(1, circlesNum) * maxColorVal
 ];
-amps=space(2,:) * 0.02;       %aditivna mutacia;
+amps=space(2,:) * 0.05;       %aditivna mutacia;
 course=zeros(islandsNum, generationsNum);    %inicializacia pola pre uchovanie priebehu, aby sa nemusela v kazdom kroku menit velkost vektora
 average = zeros(1, generationsNum);
 % %%

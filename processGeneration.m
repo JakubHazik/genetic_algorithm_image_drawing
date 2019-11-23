@@ -9,10 +9,11 @@ global imageSizeX imageSizeY circlesNum
 %najdenie najlespsej generacie
 [best, bestFit]=selbest(pop, fit, bestPopSelection);
 %prenos starsich jedincov do novej generacie
-[oldPop, oldPopFit]=selrand(pop, fit, popSize-sum(bestPopSelection));
+%[oldPop, oldPopFit]=selrand(pop, fit, popSize-sum(bestPopSelection));
+[oldPop] = selsus(pop, fit, popSize-sum(bestPopSelection));
 
 %krizenie
-work=crossov(oldPop, 2, 0);
+work=crossov(oldPop, 4, 0);
 
 %mutacia
 work = mutx(work, 0.2, space);
