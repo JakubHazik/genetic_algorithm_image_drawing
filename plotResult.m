@@ -1,5 +1,5 @@
-load('resultWorkspace.mat');
-gen = pop(1,:);
+% load('resultWorkspace500.mat');
+gen = pop(15,:);
 
 % compare images
 figure(20);
@@ -20,6 +20,7 @@ imshow(diff)
 figure(11);
 hold off;
 plot(1:generationsNum, course);
+legend
 hold on;
 xlabel('Pocet vyhodnoteni');
 ylabel('Funkcna hodnota');

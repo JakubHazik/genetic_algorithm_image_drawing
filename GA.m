@@ -38,8 +38,8 @@ course=zeros(1, generationsNum);    %inicializacia pola pre uchovanie priebehu, 
 for j=1:iterationsNum
     %vygenerovanie novej generacie
 %     pop=genrpop(popSize,space);
-%     pop = generatePop(originalImg, popSize, circlesNum, space);
-%     pop = change(pop, 2, space);
+    pop = generatePop(originalImg, popSize, circlesNum, space);
+    pop = change(pop, 2, space);
     
     %vytvorenie vektora s fitnesom(funkcnej hodnoty)d pre kazdy retazec
     fit = computeFitness(originalImg, pop, imageSizeX, imageSizeY, circlesNum);

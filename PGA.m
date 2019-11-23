@@ -21,11 +21,12 @@ originalImg = imresize(originalImg, [imageSizeY imageSizeX]);
 % title('Original image')
 
 % GA params
+saveRate = 100;
 islandsNum = 9;
 migrationRate = 5;
 iterationsNum = 1;
 generationsNum=20;        %pocet generacii/ pokusov
-popSize = 80;              %velkost populacie
+popSize = 20;              %velkost populacie
 bestPopSelection=ones(1, 12); %vektor definujuci vyber najlepsich retazcov
 space = [
     zeros(1, circlesNum),               zeros(1, circlesNum),               zeros(1, circlesNum),                   zeros(1, circlesNum);
@@ -35,6 +36,10 @@ amps=space(2,:) * 0.02;       %aditivna mutacia;
 course=zeros(islandsNum, generationsNum);    %inicializacia pola pre uchovanie priebehu, aby sa nemusela v kazdom kroku menit velkost vektora
 average = zeros(1, generationsNum);
 % %%
+
+% set output dir
+output_dir = "savings/" + sprintf("%s", datetime('now'));
+mkdir(output_dir);
 
 for j=1:iterationsNum
     %vygenerovanie novej generacie
@@ -70,11 +75,19 @@ for j=1:iterationsNum
         % ukladanie priemernej hodnoty
         average(i) = mean(course(:,i));
         
+        % ukladanie priebehu
+        if(0 == mod(i, saveRate))
+            save(output_dir + "/" + sprintf('%07d', generationsNum));
+            img = drawGAImage(pop(i, :), imageSizeX, imageSizeY, circlesNum);
+            imwrite(img, output_dir + "/" + sprintf('%07d', generationsNum) + ".png");
+            plotResult;
+        end
+        
     end
    
 end
 
 gen = pop(1, :);
-save('resultWorkspace');
+save(output_dir + "/" + sprintf('%07d', generationsNum));
 plotResult;
 
