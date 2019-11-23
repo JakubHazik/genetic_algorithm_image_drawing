@@ -1,6 +1,6 @@
-clear;
-close all;
-addpath('geneticToolbox');
+% clear;
+% close all;
+addpath('genetic_toolbox');
 
 global popSize
 global space
@@ -24,10 +24,10 @@ originalImg = imresize(originalImg, [imageSizeY imageSizeX]);
 % GA params
 saveRate = 100;
 islandsNum = 9;
-migrationRate = 5;
+migrationRate = 200;
 iterationsNum = 1;
-generationsNum=20;        %pocet generacii/ pokusov
-popSize = 20;              %velkost populacie
+generationsNum=10000;        %pocet generacii/ pokusov
+popSize = 80;              %velkost populacie
 bestPopSelection=ones(1, 12); %vektor definujuci vyber najlepsich retazcov
 space = [
     zeros(1, circlesNum),               zeros(1, circlesNum),               zeros(1, circlesNum),                   zeros(1, circlesNum);
@@ -67,7 +67,7 @@ for j=1:iterationsNum
             end
         end
 
-        fprintf('Best %i. Progress %.1f percent.\n', course(1, i), 100 * i * j / (generationsNum * iterationsNum));
+        fprintf('Best %i. Progress %.1f percent. Generation %i\n', course(1, i), 100 * i * j / (generationsNum * iterationsNum), i);
         
         if(0 == mod(i, migrationRate))
             [pop, fit] = makeMigration(pop, fit, islandsNum);

@@ -1,4 +1,4 @@
-load('resultWorkspace.mat');
+% load('resultWorkspace.mat');
 gen = pop(1,:);
 
 % compare images
