@@ -1,5 +1,6 @@
 clear;
 close all;
+addpath('geneticToolbox');
 
 global popSize
 global space
